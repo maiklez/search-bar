@@ -10,7 +10,7 @@
 
 where configuration is a Promise that resolves for example:
 
-``  
+``` 
   {
     apiUrl: 'https://rickandmortyapi.com/api',
     categories: [
@@ -19,7 +19,7 @@ where configuration is a Promise that resolves for example:
     ],
     visibleSearchItems: 6,
   }
-``
+```
   
 ## Install
 - npm install
