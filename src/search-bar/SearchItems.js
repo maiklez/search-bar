@@ -2,22 +2,27 @@
 import React from 'react';
 
 function BoldedText(text, shouldBeBold) {
-  const startValue = text.slice(0, text.toLowerCase().indexOf(shouldBeBold));
-  const boldValue = text.slice(
-    text.toLowerCase().indexOf(shouldBeBold),
-    text.toLowerCase().indexOf(shouldBeBold) + shouldBeBold.length
-  );
-  const endValue = text.slice(
-    text.toLowerCase().indexOf(shouldBeBold) + shouldBeBold.length,
-    text.length
-  );
-
+  if(text.toLowerCase().indexOf(shouldBeBold.toLowerCase()) > 0) {
+    const startValue = text.slice(0, text.toLowerCase().indexOf(shouldBeBold.toLowerCase()));
+    const boldValue = text.slice(
+      text.toLowerCase().indexOf(shouldBeBold.toLowerCase()),
+      text.toLowerCase().indexOf(shouldBeBold.toLowerCase()) + shouldBeBold.length
+    );
+    const endValue = text.slice(
+      text.toLowerCase().indexOf(shouldBeBold.toLowerCase()) + shouldBeBold.length,
+      text.length
+    );
+  
+    return (
+      <span>
+        {startValue}
+        <b>{boldValue}</b>
+        {endValue}
+      </span>
+    );
+  }
   return (
-    <span>
-      {startValue}
-      <b>{boldValue}</b>
-      {endValue}
-    </span>
+    <span>{text}</span>
   );
 }
 

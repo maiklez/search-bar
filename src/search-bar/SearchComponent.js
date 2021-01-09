@@ -6,9 +6,16 @@ import './res/search-bar.css';
 import SearchBar from './SearchBar';
 import SearchItems from './SearchItems';
 
+function getApiUrl(apiUrl, category, input) {
+  if(category.toLowerCase().indexOf(input.toLowerCase()) > 0) {
+    return `${apiUrl}/${category}`;
+  }
+  return `${apiUrl}/${category}?name=${input}`;
+}
+
 async function getApiResults(apiUrl, category, input) {
   try {
-    const { data } = await axios.get(`${apiUrl}?name=${input}`);
+    const { data } = await axios.get(getApiUrl(apiUrl, category, input));
     const { results } = data;
     
     return results.map(r => {
@@ -32,7 +39,7 @@ function SearchComponent(props) {
     if (input && input.length > 1) {
       const results = await Promise.all(config.categories.map(
         async c => getApiResults(
-          `${config.apiUrl}/${c.name}`,
+          `${config.apiUrl}`,
           c.name,
           input
         )));
