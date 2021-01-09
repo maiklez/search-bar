@@ -43,9 +43,8 @@ function SearchComponent(props) {
           c.name,
           input
         )));
-      console.log(results);
       const mergedResults = [].concat(...results)
-      console.log(mergedResults);
+
       return setSearchList(mergedResults);
     }
 
