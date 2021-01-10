@@ -8,7 +8,7 @@
   />
 ``
 
-where configuration is a Promise that resolves for example:
+where configuration is a Promise that resolves for example with rick and morty api:
 
 ``` 
   {
