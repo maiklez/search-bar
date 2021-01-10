@@ -6,6 +6,14 @@ import './res/search-bar.css';
 import SearchBar from './SearchBar';
 import SearchItems from './SearchItems';
 
+/**
+ * Returns the final url of the api. It should look for all items of a category
+ * if category contains input. Or filter by name if not.
+ * @param {String} apiUrl common url
+ * @param {String} category category into search
+ * @param {String} input word to search for
+ * @returns {String} final url to call
+ */
 function getApiUrl(apiUrl, category, input) {
   if(category.toLowerCase().indexOf(input.toLowerCase()) > 0) {
     return `${apiUrl}/${category}`;
@@ -13,6 +21,13 @@ function getApiUrl(apiUrl, category, input) {
   return `${apiUrl}/${category}?name=${input}`;
 }
 
+/**
+ * Returns the results of the api search
+ * @param {String} apiUrl common url
+ * @param {String} category category into search
+ * @param {String} input word to search for
+ * @returns {Array} results of the search
+ */
 async function getApiResults(apiUrl, category, input) {
   try {
     const { data } = await axios.get(getApiUrl(apiUrl, category, input));
