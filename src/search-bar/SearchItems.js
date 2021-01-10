@@ -4,8 +4,8 @@ import React from 'react';
 const ITEM_PADDING_TOP = 11;
 const ITEM_HEIGHT = 31;
 
-function BoldedText(text, shouldBeBold) {
-  if(text.toLowerCase().indexOf(shouldBeBold.toLowerCase()) > 0) {
+function BoldedText(text, shouldBeBold, className='') {
+  if(text.toLowerCase().indexOf(shouldBeBold.toLowerCase()) >= 0) {
     const startValue = text.slice(0, text.toLowerCase().indexOf(shouldBeBold.toLowerCase()));
     const boldValue = text.slice(
       text.toLowerCase().indexOf(shouldBeBold.toLowerCase()),
@@ -17,7 +17,9 @@ function BoldedText(text, shouldBeBold) {
     );
   
     return (
-      <span>
+      <span
+        className={className}
+      >
         {startValue}
         <b>{boldValue}</b>
         {endValue}
@@ -63,7 +65,7 @@ function SearchItems (props) {
                 style={itemCSS}
               >
                 {BoldedText(data.name, queryString)}
-                <span className='itemCategory'>{` in ${data.category}`}</span>
+                {BoldedText(` in ${data.category}`, queryString, 'itemCategory')}
               </li>	
            )	
          }
